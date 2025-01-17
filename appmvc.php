@@ -1,20 +1,23 @@
 <?php
 
-	class MaClasse {
+	class AppMVC {
 
-		private $monattribut;	//Doit être compris entre 0 et 10
-		
 		public function __construct() {
-			$this -> monattribut = 10;
+
+		}
+
+		public function afficherPage($mapage) {
+			if($mapage == 1) $this -> page1();
+			else if($mapage == 2) $this -> page2();
+			else $this -> page1();
 		}
 		
-		public function getMonattribut() {
-			return $this -> monattribut;
+		public function page1() {
+			echo "Première page";
 		}
-		public function setMonAttribut($value) {
-			if(($value >= 0) && ($value < 10)) {
-				$this -> monattribut = $value;
-			}
+		
+		public function page2() {
+			echo "Deuxieme page"; 
 		}
 
 	}
