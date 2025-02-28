@@ -27,10 +27,21 @@
 		public function page1() {
 			echo "Première page";
 			
+			
 		}
 		
 		public function page2() {
-			echo "Deuxieme page"; 
+			echo "Deuxieme page";
+			
+			
+			$reponses  = $this -> bdd -> getReponses(1);
+			
+			echo '<ul>';
+			foreach($reponses as $reponse) {
+				echo '<li><input type="radio" name="reponses" value="'.$reponse -> id.'"> '.$reponse -> intitule.'</li>';
+			}
+			echo '</ul>';		
+			
 		}
 
 	}
