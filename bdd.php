@@ -30,9 +30,26 @@ class BDD {
 	
 	/* Récupération de la liste des question */
 	public function getQuestion($question_id) {
-		//TODO
+		$question = null;	//Servira a stocker la question
+
+		/* On crée la requete SQL et on lie les paramètres */
+		$requete = $this -> mysqli-> prepare("SELECT question.id, question.intitule, question.multiple FROM question WHERE question.id=?");
+		$requete -> bind_param('i', $question_id);
+		
+		/* On execute la requete et on récupère le résultat */
+		$requete -> execute();
+		$resultat = $requete -> get_result();
+		
+		/* On libère la requête */
+		$requete -> close();
 		
 		
+		/* On parcours les résultats pour les stocker */
+		if($enregistrement = $resultat -> fetch_object()) {
+			$question = $enregistrement;	//On ajoute un element avec un l'id et l'intitule à la suite de nos réponses
+		}
+		
+		return $question;		//On retourne les réponses de la question
 	}
 	
 	

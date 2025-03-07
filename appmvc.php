@@ -1,7 +1,7 @@
 <?php
 
 	include("bdd.php");
-
+	include("template.php");
 
 	class AppMVC {
 
@@ -25,9 +25,14 @@
 		}
 		
 		public function page1() {
-			echo "Première page";
+			$vue = new Template('templates/question.tpl');	//On récupère le fichier template
 			
-			
+			$question = $this -> bdd -> getQuestion(1);		//On récupère les données de la question
+			$reponses = $this -> bdd -> getReponses(1);		//On récupère les réponses de la question
+
+			$vue -> remplacer('#TITRE_QUESTION#', $question -> intitule);	//On insère le titre de la question à la place de #TITRE_QUESTION#
+
+			echo $vue -> getSortie();	//Affichage de la sortie
 		}
 		
 		public function page2() {
